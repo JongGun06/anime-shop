@@ -1,23 +1,29 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { UserProvider } from './UserContext';
+import TodoList from './TodoList';
+import GoogleLogin from './GoogleLogin';
+import Form from './Form';
+import Basket from './Basket';
+import Comment from './Comment';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Router>
+          <UserProvider>
+            <Routes>
+              <Route path='/' element={<GoogleLogin/>}/>
+              <Route path='/todolist' element={<TodoList/>}/>
+              <Route path='/add' element={<Form/>}/>
+              <Route path='/basket' element={<Basket/>}/>
+              <Route path='/comment' element={<Comment/>}/>
+
+
+            </Routes>
+          </UserProvider>
+        </Router>
     </div>
   );
 }
